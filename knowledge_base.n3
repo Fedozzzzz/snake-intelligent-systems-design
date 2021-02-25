@@ -1,0 +1,96 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix mc: <urn:myClasses:>.
+@prefix mo: <urn:myObjects:>.
+@prefix mp: <urn:myPredicates:>.
+
+mc:Model a rdfs:Class.
+
+mc:Mode a rdfs:Class.
+
+mc:Action a rdfs:Class.
+
+mc:Metric a rdfs:Class.
+
+mc:Algorithms a rdfs:Class.
+
+mc:Env_props a rdfs:Class.
+
+mo:score a mc:Metric;
+    mp:no_less_than 0;
+    mp:good_is 1000.
+
+mo:algorithm a mc:Algorithms.
+
+mo:episodes_info a mc:Info.
+
+mo:epsilon_info a mc:Info.
+
+mo:gamma_info a mc:Info.
+
+mo:epsilon_min a mc:Info.
+
+mo:epsilon_decay a mc:Info.
+
+mo:learning_rate_info a mc:Info.
+
+mo:batchsize_info a mc:Info.
+
+mo:experiment a mc:Experiment.
+
+mo:attempts a mc:Info;
+    mp:max_is 20;
+    mp:needs mo:run_random_redefine_parameters.
+
+mo:neural_network a mc:Model;
+    mp:store mo:file.
+
+mo:only_walls a mc:Mode;
+    foaf:state_space "no body knowledge".
+
+mo:episodes_num_experiment a mc:Action;
+    mp:needs mo:experiment;
+    mp:calls mo:run_episodes_num_experiment.
+
+mo:env_experiment a mc:Action;
+    mp:needs mo:experiment;
+    mp:calls mo:run_env_experiment.
+
+mo:epsilon_experiment a mc:Action;
+    mp:needs mo:experiment;
+    mp:calls mo:run_epsilon_experiment.
+
+mo:env_experiment a mc:Action;
+    mp:needs mo:experiment;
+    mp:calls mo:run_env_experiment.
+
+mo:batchsize_experiment a mc:Action;
+    mp:needs mo:experiment;
+    mp:calls mo:run_batchsize_experiment.
+
+mo:learning_rate_experiment a mc:Action;
+    mp:needs mo:experiment;
+    mp:calls mo:run_learning_rate_experiment.
+
+mo:gamma_experiment a mc:Action;
+    mp:needs mo:experiment;
+    mp:calls mo:run_gamma_experiment.
+
+mo:epsilon_min_experiment a mc:Action;
+    mp:needs mo:experiment;
+    mp:calls mo:run_epsilon_min_experiment.
+
+mo:epsilon_decay_experiment a mc:Action;
+    mp:needs mo:experiment;
+    mp:calls mo:run_epsilon_decay_experiment.
+
+mo:bad_result a mc:Action;
+    mp:less_than mo:score;
+    mp:need_to mo:redefine_parameters.
+
+mo:run_random_redefine_parameters a mc:Action;
+    mp:calls mo:random_redefine_parameters.
+
+

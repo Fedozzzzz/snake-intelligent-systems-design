@@ -1,0 +1,88 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:myClasses:Action> a rdfs:Class .
+
+<urn:myClasses:Algorithms> a rdfs:Class .
+
+<urn:myClasses:Env_props> a rdfs:Class .
+
+<urn:myClasses:Metric> a rdfs:Class .
+
+<urn:myClasses:Mode> a rdfs:Class .
+
+<urn:myClasses:Model> a rdfs:Class .
+
+<urn:myObjects:algorithm> a <urn:myClasses:Algorithms> .
+
+<urn:myObjects:attempts> a <urn:myClasses:Info> ;
+    <urn:myPredicates:max_is> 20 ;
+    <urn:myPredicates:needs> <urn:myObjects:run_random_redefine_parameters> .
+
+<urn:myObjects:bad_result> a <urn:myClasses:Action> ;
+    <urn:myPredicates:less_than> <urn:myObjects:score> ;
+    <urn:myPredicates:need_to> <urn:myObjects:redefine_parameters> .
+
+<urn:myObjects:batchsize_experiment> a <urn:myClasses:Action> ;
+    <urn:myPredicates:calls> <urn:myObjects:run_batchsize_experiment> ;
+    <urn:myPredicates:needs> <urn:myObjects:experiment> .
+
+<urn:myObjects:batchsize_info> a <urn:myClasses:Info> .
+
+<urn:myObjects:env_experiment> a <urn:myClasses:Action> ;
+    <urn:myPredicates:calls> <urn:myObjects:run_env_experiment> ;
+    <urn:myPredicates:needs> <urn:myObjects:experiment> .
+
+<urn:myObjects:episodes_info> a <urn:myClasses:Info> .
+
+<urn:myObjects:episodes_num_experiment> a <urn:myClasses:Action> ;
+    <urn:myPredicates:calls> <urn:myObjects:run_episodes_num_experiment> ;
+    <urn:myPredicates:needs> <urn:myObjects:experiment> .
+
+<urn:myObjects:epsilon_decay> a <urn:myClasses:Info> .
+
+<urn:myObjects:epsilon_decay_experiment> a <urn:myClasses:Action> ;
+    <urn:myPredicates:calls> <urn:myObjects:run_epsilon_decay_experiment> ;
+    <urn:myPredicates:needs> <urn:myObjects:experiment> .
+
+<urn:myObjects:epsilon_experiment> a <urn:myClasses:Action> ;
+    <urn:myPredicates:calls> <urn:myObjects:run_epsilon_experiment> ;
+    <urn:myPredicates:needs> <urn:myObjects:experiment> .
+
+<urn:myObjects:epsilon_info> a <urn:myClasses:Info> .
+
+<urn:myObjects:epsilon_min> a <urn:myClasses:Info> ;
+    <urn:myPredicates:best_is> 9.85e-01 .
+
+<urn:myObjects:epsilon_min_experiment> a <urn:myClasses:Action> ;
+    <urn:myPredicates:calls> <urn:myObjects:run_epsilon_min_experiment> ;
+    <urn:myPredicates:needs> <urn:myObjects:experiment> .
+
+<urn:myObjects:gamma_experiment> a <urn:myClasses:Action> ;
+    <urn:myPredicates:calls> <urn:myObjects:run_gamma_experiment> ;
+    <urn:myPredicates:needs> <urn:myObjects:experiment> .
+
+<urn:myObjects:gamma_info> a <urn:myClasses:Info> .
+
+<urn:myObjects:learning_rate_experiment> a <urn:myClasses:Action> ;
+    <urn:myPredicates:calls> <urn:myObjects:run_learning_rate_experiment> ;
+    <urn:myPredicates:needs> <urn:myObjects:experiment> .
+
+<urn:myObjects:learning_rate_info> a <urn:myClasses:Info> .
+
+<urn:myObjects:neural_network> a <urn:myClasses:Model> ;
+    <urn:myPredicates:store> <urn:myObjects:file> .
+
+<urn:myObjects:only_walls> a <urn:myClasses:Mode> ;
+    foaf:state_space "no body knowledge" .
+
+<urn:myObjects:run_random_redefine_parameters> a <urn:myClasses:Action> ;
+    <urn:myPredicates:calls> <urn:myObjects:random_redefine_parameters> .
+
+<urn:myObjects:score> a <urn:myClasses:Metric> ;
+    <urn:myPredicates:good_is> 1000 ;
+    <urn:myPredicates:no_less_than> 0 .
+
+<urn:myObjects:experiment> a <urn:myClasses:Experiment> .
+
