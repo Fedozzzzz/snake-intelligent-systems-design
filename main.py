@@ -137,6 +137,10 @@ if __name__ == "__main__":
                         method_to_call = split_res(row.s)
                         print('method_to_call', method_to_call)
                         ep, params = globals()[method_to_call]()
+                        best_attempt_score = try_model_with_parameters(ep, params)
+                        is_need_redefine_parameters = check_is_need_redefine_parameters(best_attempt_score, g)
+            if not is_need_redefine_parameters:
+                break
             curr_num_attempt = 0
 
         for row in g.query("SELECT ?s WHERE { mo:bad_result mp:need_to ?s .}"):
@@ -153,4 +157,3 @@ if __name__ == "__main__":
 
     # SAVE KNOWLEDGE BASE BACKUP WITH RESULTS TO A FILE
     g.serialize(destination='output_kb.n3', format="turtle")
-
